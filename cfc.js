@@ -7,10 +7,17 @@ var pike = {
   maxCust: 35,
   avgCup: 1.2,
   avgLb: 0.34,
+  avgHrCust: [],
 
   custCount: function(min, max) {
-    return Math.floor(Math.random() * (max - min) + min)
+    for (var i = 0; i < hrs.length; i++) {
+    	this.avgHrCust.push(Math.floor(Math.random() * (max - min) + min));
+    }
+  },
+  empNeed: function(cups) {
+    return Math.floor(pike.custCount / cups + 1 )
   }
 }
 
 pike.custCount(pike.minCust, pike.maxCust);
+pike.empNeed(pike.avgCup);
