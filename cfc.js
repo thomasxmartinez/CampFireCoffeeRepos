@@ -9,34 +9,38 @@ var pike = {
   avgCup: 1.2,
   avgPounds: 0.34,
   custPerHour: [],
-  custPerDay: 0,var round = function(num, prec){
-   return parseFloat(num.toFixed(prec));
-  };  cupsPerHour: [],
+  custPerDay: 0,
+  cupsPerHour: [],
   cupsPerDay:0,
-  poundsPerHr:[],
-  poundsPerDay:0,
+  toGoPoundsPerHour:[],
+  toGoPoundsPerDay:0,
+  poundCupHrly:[],
+  poundCupDaily:0,
+  dailyBeanPound:0,
+  hrlyBeanPound: [],
   empPerHr: [],
   empPerDay:0,
+  strings:[],
 
 getRando: function(min,max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 },
-getCust: function() {
+calcCustPerHour: function() {
   for (var i = 0; i < hrs.length; i++) {
     this.custPerHour.push(this.getRando(this.minCust, this.maxCust));
     this.custPerDay += this.custPerHour[i];
   }
 },
-getCups: function() {
+calcCupsPerHour: function() {
   for (var i = 0; i < hrs.length; i++) {
-    this.cupsPerHour.push(this.custPerHour[i] * this.avgCups);
+    this.cupsPerHour.push(this.custPerHour[i] * this.avgCup);
     this.cupsPerDay += this.cupsPerHour[i];
   }
 },
 getPounds: function() {
   for (var i =0;i < hrs.length; i++) {
-    this.poundsPerHr.push(this.custPerHour[i] * this.avgPounds);
-    this.poundsPerDay += this.poundsPerHr[i];
+    this.toGoPoundsPerHour.push(this.custPerHour[i] * this.avgPounds);
+    this.toGoPoundsPerDay += this.toGoPoundsPerHour[i];
   }
 },
 getEmp: function() {
@@ -44,39 +48,54 @@ getEmp: function() {
     this.empPerHr.push(Math.ceil(this.custPerHour[i] / 30));
     this.empPerDay += this.empPerHr[i];
      }
-   }
+   },
+getPoundsPerHr: function() {
+  for (var i = 0; i < hrs.length; i++) {
+    this.poundCupHrly.push(Math.ceil(this.cupsPerHour[i] / 16 + this.hrlyBeanPound));
+  }
+},
+getToGoPoundsPerDay: function() {
+  for (var i = 0; i < hrs.length; i++) {
+    this.toGoPoundsPerDay.push(Math.ceil(this.toGoPoundsPerDay += hrs.length[i]))
+  }
+},
+
 }
-pike.getCust();
-pike.getCups();
+pike.calcCustPerHour();
+pike.calcCupsPerHour();
 pike.getPounds();
 pike.getEmp();
+pike.getPoundsPerHr();
 
 var capHill = {
-  location: 'Pike Place Market',
-  minCust: 12,
-  maxCust: 28,
-  avgCup: 3.2,
-  avgPounds: 0.03,
+  location: 'Capitol Hill',
+  minCust: 14,
+  maxCust: 35,
+  avgCup: 1.2,
+  avgPounds: 0.34,
   custPerHour: [],
-  custPerDay: 0,var round = function(num, prec){
-   return parseFloat(num.toFixed(prec));
-  };  cupsPerHour: [],
+  custPerDay: 0,
+  cupsPerHour: [],
   cupsPerDay:0,
-  poundsPerHr:[],
-  poundsPerDay:0,
+  toGoPoundsPerHour:[],
+  toGoPoundsPerDay:0,
+  poundCupHrly:[],
+  poundCupDaily:0,
+  poundCupDaily:0,
+  dailyBeanPound:0,
   empPerHr: [],
   empPerDay:0,
 
 getRando: function(min,max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 },
-getCust: function() {
+calcCustPerHour: function() {
   for (var i = 0; i < hrs.length; i++) {
     this.custPerHour.push(this.getRando(this.minCust, this.maxCust));
     this.custPerDay += this.custPerHour[i];
   }
 },
-getCups: function() {
+calcCupsPerHour: function() {
   for (var i = 0; i < hrs.length; i++) {
     this.cupsPerHour.push(this.custPerHour[i] * this.avgCups);
     this.cupsPerDay += this.cupsPerHour[i];
@@ -84,8 +103,8 @@ getCups: function() {
 },
 getPounds: function() {
   for (var i =0;i < hrs.length; i++) {
-    this.poundsPerHr.push(this.custPerHour[i] * this.avgPounds);
-    this.poundsPerDay += this.poundsPerHr[i];
+    this.toGoPoundsPerHour.push(this.custPerHour[i] * this.avgPounds);
+    this.toGoPoundsPerDay += this.toGoPoundsPerHour[i];
   }
 },
 getEmp: function() {
@@ -95,37 +114,40 @@ getEmp: function() {
      }
    }
 }
-capHill.getCust();
-capHill.getCups();
+capHill.calcCustPerHour();
+capHill.calcCupsPerHour();
 capHill.getPounds();
 capHill.getEmp();
 
 var seaPubLib = {
-  location: 'Pike Place Market',
-  minCust: 9,
-  maxCust: 45,
-  avgCup: 2.6,
-  avgPounds: 0.02,
+  location: 'Seattle Public Library',
+  minCust: 14,
+  maxCust: 35,
+  avgCup: 1.2,
+  avgPounds: 0.34,
   custPerHour: [],
-  custPerDay: 0,var round = function(num, prec){
-   return parseFloat(num.toFixed(prec));
-  };  cupsPerHour: [],
+  custPerDay: 0,
+  cupsPerHour: [],
   cupsPerDay:0,
-  poundsPerHr:[],
-  poundsPerDay:0,
+  toGoPoundsPerHour:[],
+  toGoPoundsPerDay:0,
+  poundCupHrly:[],
+  poundCupDaily:0,
+  poundCupDaily:0,
+  dailyBeanPound:0,
   empPerHr: [],
   empPerDay:0,
 
 getRando: function(min,max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 },
-getCust: function() {
+calcCustPerHour: function() {
   for (var i = 0; i < hrs.length; i++) {
     this.custPerHour.push(this.getRando(this.minCust, this.maxCust));
     this.custPerDay += this.custPerHour[i];
   }
 },
-getCups: function() {
+calcCupsPerHour: function() {
   for (var i = 0; i < hrs.length; i++) {
     this.cupsPerHour.push(this.custPerHour[i] * this.avgCups);
     this.cupsPerDay += this.cupsPerHour[i];
@@ -133,8 +155,8 @@ getCups: function() {
 },
 getPounds: function() {
   for (var i =0;i < hrs.length; i++) {
-    this.poundsPerHr.push(this.custPerHour[i] * this.avgPounds);
-    this.poundsPerDay += this.poundsPerHr[i];
+    this.toGoPoundsPerHour.push(this.custPerHour[i] * this.avgPounds);
+    this.toGoPoundsPerDay += this.toGoPoundsPerHour[i];
   }
 },
 getEmp: function() {
@@ -144,37 +166,40 @@ getEmp: function() {
      }
    }
 }
-seaPubLib.getCust();
-seaPubLib.getCups();
+seaPubLib.calcCustPerHour();
+seaPubLib.calcCupsPerHour();
 seaPubLib.getPounds();
 seaPubLib.getEmp();
 
 var southLakeUnion = {
-  location: 'Pike Place Market',
-  minCust: 5,
-  maxCust: 18,
-  avgCup: 1.3,
-  avgPounds: 0.04,
+  location: 'South Lake Union',
+  minCust: 14,
+  maxCust: 35,
+  avgCup: 1.2,
+  avgPounds: 0.34,
   custPerHour: [],
-  custPerDay: 0,var round = function(num, prec){
-   return parseFloat(num.toFixed(prec));
-  };  cupsPerHour: [],
+  custPerDay: 0,
+  cupsPerHour: [],
   cupsPerDay:0,
-  poundsPerHr:[],
-  poundsPerDay:0,
+  toGoPoundsPerHour:[],
+  toGoPoundsPerDay:0,
+  poundCupHrly:[],
+  poundCupDaily:0,
+  poundCupDaily:0,
+  dailyBeanPound:0,
   empPerHr: [],
   empPerDay:0,
 
 getRando: function(min,max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 },
-getCust: function() {
+calcCustPerHour: function() {
   for (var i = 0; i < hrs.length; i++) {
     this.custPerHour.push(this.getRando(this.minCust, this.maxCust));
     this.custPerDay += this.custPerHour[i];
   }
 },
-getCups: function() {
+calcCupsPerHour: function() {
   for (var i = 0; i < hrs.length; i++) {
     this.cupsPerHour.push(this.custPerHour[i] * this.avgCups);
     this.cupsPerDay += this.cupsPerHour[i];
@@ -182,8 +207,8 @@ getCups: function() {
 },
 getPounds: function() {
   for (var i =0;i < hrs.length; i++) {
-    this.poundsPerHr.push(this.custPerHour[i] * this.avgPounds);
-    this.poundsPerDay += this.poundsPerHr[i];
+    this.toGoPoundsPerHour.push(this.custPerHour[i] * this.avgPounds);
+    this.toGoPoundsPerDay += this.toGoPoundsPerHour[i];
   }
 },
 getEmp: function() {
@@ -193,7 +218,59 @@ getEmp: function() {
      }
    }
 }
-southLakeUnion.getCust();
-southLakeUnion.getCups();
+southLakeUnion.calcCustPerHour();
+southLakeUnion.calcCupsPerHour();
 southLakeUnion.getPounds();
 southLakeUnion.getEmp();
+
+var seaTac = {
+  location: 'Sea-Tac Airport',
+  minCust: 14,
+  maxCust: 35,
+  avgCup: 1.2,
+  avgPounds: 0.34,
+  custPerHour: [],
+  custPerDay: 0,
+  cupsPerHour: [],
+  cupsPerDay:0,
+  toGoPoundsPerHour:[],
+  toGoPoundsPerDay:0,
+  poundCupHrly:[],
+  poundCupDaily:0,
+  poundCupDaily:0,
+  dailyBeanPound:0,
+  empPerHr: [],
+  empPerDay:0,
+
+getRando: function(min,max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+},
+calcCustPerHour: function() {
+  for (var i = 0; i < hrs.length; i++) {
+    this.custPerHour.push(this.getRando(this.minCust, this.maxCust));
+    this.custPerDay += this.custPerHour[i];
+  }
+},
+calcCupsPerHour: function() {
+  for (var i = 0; i < hrs.length; i++) {
+    this.cupsPerHour.push(this.custPerHour[i] * this.avgCups);
+    this.cupsPerDay += this.cupsPerHour[i];
+  }
+},
+getPounds: function() {
+  for (var i =0;i < hrs.length; i++) {
+    this.toGoPoundsPerHour.push(this.custPerHour[i] * this.avgPounds);
+    this.toGoPoundsPerDay += this.toGoPoundsPerHour[i];
+  }
+},
+getEmp: function() {
+  for (var i = 0; i < hrs.length; i++) {
+    this.empPerHr.push(Math.ceil(this.custPerHour[i] / 30));
+    this.empPerDay += this.empPerHr[i];
+     }
+   }
+}
+seaTac.calcCustPerHour();
+seaTac.calcCupsPerHour();
+seaTac.getPounds();
+seaTac.getEmp();
