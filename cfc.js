@@ -23,6 +23,8 @@ var pike = {
   strings:[],
   totalCustomers:[],
   totalCups:[],
+  totalToGoPounds:[],
+  totalPoundsNeeded: [],
 
 getRando: function(min,max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -78,6 +80,12 @@ getTotalCust: function() {
 getTotalCups: function() {
   this.totalCups.push('Total cups sold at ' + this.location + ': ' + this.cupsPerDay.toFixed(2));
 },
+getTotalToGoPounds: function() {
+  this.totalToGoPounds.push('Total to-go pounds sold at ' + this.location + ': ' + this.toGoPoundsPerDay.toFixed(2));
+},
+getTotalPoundsNeeded: function() {
+  this.totalPoundsNeeded.push('Total pounds of beans needed at ' + this.location + ': ' + this.dailyBeanPound.toFixed(2));
+},
 };
 
 pike.calcCustPerHour();
@@ -90,6 +98,8 @@ pike.calcDailyBeanPound();
 pike.getStrings();
 pike.getTotalCust();
 pike.getTotalCups();
+pike.getTotalToGoPounds();
+pike.getTotalPoundsNeeded();
 
 var capHill = {
   location: 'Capitol Hill',
@@ -112,6 +122,8 @@ var capHill = {
   strings:[],
   totalCustomers:[],
   totalCups:[],
+  totalToGoPounds:[],
+  totalPoundsNeeded: [],
 
 getRando: function(min,max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -167,6 +179,12 @@ getTotalCust: function() {
 getTotalCups: function() {
   this.totalCups.push('Total cups sold at ' + this.location + ': ' + this.cupsPerDay.toFixed(2));
 },
+getTotalToGoPounds: function() {
+  this.totalToGoPounds.push('Total to-go pounds sold at ' + this.location + ': ' + this.toGoPoundsPerDay.toFixed(2));
+},
+getTotalPoundsNeeded: function() {
+  this.totalPoundsNeeded.push('Total pounds of beans needed at ' + this.location + ': ' + this.dailyBeanPound.toFixed(2));
+},
 };
 
 capHill.calcCustPerHour();
@@ -179,6 +197,8 @@ capHill.calcDailyBeanPound();
 capHill.getStrings();
 capHill.getTotalCust();
 capHill.getTotalCups();
+capHill.getTotalToGoPounds();
+capHill.getTotalPoundsNeeded();
 
 var seaPubLib = {
   location: 'Seattle Public Library',
@@ -201,6 +221,8 @@ var seaPubLib = {
   strings:[],
   totalCustomers:[],
   totalCups:[],
+  totalToGoPounds:[],
+  totalPoundsNeeded: [],
 
 getRando: function(min,max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -256,6 +278,12 @@ getTotalCust: function() {
 getTotalCups: function() {
   this.totalCups.push('Total cups sold at ' + this.location + ': ' + this.cupsPerDay.toFixed(2));
 },
+getTotalToGoPounds: function() {
+  this.totalToGoPounds.push('Total to-go pounds sold at ' + this.location + ': ' + this.toGoPoundsPerDay.toFixed(2));
+},
+getTotalPoundsNeeded: function() {
+  this.totalPoundsNeeded.push('Total pounds of beans needed at ' + this.location + ': ' + this.dailyBeanPound.toFixed(2));
+},
 };
 
 seaPubLib.calcCustPerHour();
@@ -268,6 +296,8 @@ seaPubLib.calcDailyBeanPound();
 seaPubLib.getStrings();
 seaPubLib.getTotalCust();
 seaPubLib.getTotalCups();
+seaPubLib.getTotalToGoPounds();
+seaPubLib.getTotalPoundsNeeded();
 
 var southLakeUnion = {
   location: 'South Lake Union',
@@ -290,6 +320,8 @@ var southLakeUnion = {
   strings:[],
   totalCustomers:[],
   totalCups:[],
+  totalToGoPounds:[],
+  totalPoundsNeeded: [],
 
 getRando: function(min,max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -345,6 +377,12 @@ getTotalCust: function() {
 getTotalCups: function() {
   this.totalCups.push('Total cups sold at ' + this.location + ': ' + this.cupsPerDay.toFixed(2));
 },
+getTotalToGoPounds: function() {
+  this.totalToGoPounds.push('Total to-go pounds sold at ' + this.location + ': ' + this.toGoPoundsPerDay.toFixed(2));
+},
+getTotalPoundsNeeded: function() {
+  this.totalPoundsNeeded.push('Total pounds of beans needed at ' + this.location + ': ' + this.dailyBeanPound.toFixed(2));
+},
 };
 
 southLakeUnion.calcCustPerHour();
@@ -357,6 +395,8 @@ southLakeUnion.calcDailyBeanPound();
 southLakeUnion.getStrings();
 southLakeUnion.getTotalCust();
 southLakeUnion.getTotalCups();
+southLakeUnion.getTotalToGoPounds();
+southLakeUnion.getTotalPoundsNeeded();
 
 var seaTac = {
   location: 'Sea-Tac Airport',
@@ -379,6 +419,10 @@ var seaTac = {
   strings:[],
   totalCustomers:[],
   totalCups:[],
+  totalToGoPounds:[],
+  totalPoundsNeeded:[],
+  totalToGoPounds:[],
+  totalPoundsNeeded: [],
 
 getRando: function(min,max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -434,6 +478,12 @@ getTotalCust: function() {
 getTotalCups: function() {
   this.totalCups.push('Total cups sold at ' + this.location + ': ' + this.cupsPerDay.toFixed(2));
 },
+getTotalToGoPounds: function() {
+  this.totalToGoPounds.push('Total to-go pounds sold at ' + this.location + ': ' + this.toGoPoundsPerDay.toFixed(2));
+},
+getTotalPoundsNeeded: function() {
+  this.totalPoundsNeeded.push('Total pounds of beans needed at ' + this.location + ': ' + this.dailyBeanPound.toFixed(2));
+},
 };
 
 seaTac.calcCustPerHour();
@@ -446,3 +496,5 @@ seaTac.calcDailyBeanPound();
 seaTac.getStrings();
 seaTac.getTotalCust();
 seaTac.getTotalCups();
+seaTac.getTotalToGoPounds();
+seaTac.getTotalPoundsNeeded();
