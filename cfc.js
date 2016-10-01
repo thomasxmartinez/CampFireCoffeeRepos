@@ -49,14 +49,14 @@ getEmp: function() {
     this.empPerDay += this.empPerHr[i];
      }
    },
-getPoundsPerHr: function() {
+calcPoundsCupHourly: function() {
   for (var i = 0; i < hrs.length; i++) {
-    this.poundCupHrly.push(Math.ceil(this.cupsPerHour[i] / 16 + this.hrlyBeanPound));
+    this.poundCupHrly.push(Math.ceil(this.cupsPerHour[i] / 16));
   }
 },
-getToGoPoundsPerDay: function() {
+calcPoundCupDaily: function() {
   for (var i = 0; i < hrs.length; i++) {
-    this.toGoPoundsPerDay.push(Math.ceil(this.toGoPoundsPerDay += hrs.length[i]))
+    this.poundCupDaily += this.poundCupHrly[i];
   }
 },
 
@@ -65,7 +65,8 @@ pike.calcCustPerHour();
 pike.calcCupsPerHour();
 pike.getPounds();
 pike.getEmp();
-pike.getPoundsPerHr();
+pike.calcPoundsCupHourly();
+pike.calcPoundCupDaily();
 
 var capHill = {
   location: 'Capitol Hill',
