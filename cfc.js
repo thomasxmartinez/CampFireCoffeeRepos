@@ -1,10 +1,6 @@
 'use strict'
 
-var months = ['Jan','Feb','Mar','Apr','Jun','Jul','Aug']
-var monthsEl = document.getElementById('months');
-
-
-var hrs = ['6:00AM','7:00AM','8:00AM','9:00AM','10:00AM','11:00AM','12:00PM','1:00PM','2:00PM','3:00PM','4:00PM','5:00PM','6:00','7:00PM','8:00PM']
+var hrs = ['6:00AM','7:00AM','8:00AM','9:00AM','10:00AM','11:00AM','12:00PM','1:00PM','2:00PM','3:00PM','4:00PM','5:00PM','6:00PM','7:00PM','8:00PM']
 
 var pike = {
   location: 'Pike Place Market',
@@ -29,6 +25,7 @@ var pike = {
   totalCups:[],
   totalToGoPounds:[],
   totalPoundsNeeded: [],
+
 
 getRando: function(min,max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -104,6 +101,16 @@ pike.getTotalCust();
 pike.getTotalCups();
 pike.getTotalToGoPounds();
 pike.getTotalPoundsNeeded();
+
+var pikePlaceUl = document.getElementById('pikePlaceList');
+var ulEl = document.createElement('ul');
+
+for (var i = 0; i < pike.strings.length; i++) {
+  var liEl = document.createElement('li');
+  liEl.textContent = pike.strings[i];
+  ulEl.appendChild(liEl);
+}
+pikePlaceUl.appendChild(ulEl);
 
 var capHill = {
   location: 'Capitol Hill',
@@ -204,6 +211,16 @@ capHill.getTotalCups();
 capHill.getTotalToGoPounds();
 capHill.getTotalPoundsNeeded();
 
+var capHillUl = document.getElementById('capHillList');
+var ulEl = document.createElement('ul');
+
+for (var i = 0; i < capHill.strings.length; i++) {
+  var liEl = document.createElement('li');
+  liEl.textContent = capHill.strings[i];
+  ulEl.appendChild(liEl);
+}
+capHillUl.appendChild(ulEl);
+
 var seaPubLib = {
   location: 'Seattle Public Library',
   minCust: 9,
@@ -303,6 +320,16 @@ seaPubLib.getTotalCups();
 seaPubLib.getTotalToGoPounds();
 seaPubLib.getTotalPoundsNeeded();
 
+var seaPubLibUl = document.getElementById('seaPubLibList');
+var ulEl = document.createElement('ul');
+
+for (var i = 0; i < seaPubLib.strings.length; i++) {
+  var liEl = document.createElement('li');
+  liEl.textContent = seaPubLib.strings[i];
+  ulEl.appendChild(liEl);
+}
+seaPubLibUl.appendChild(ulEl);
+
 var southLakeUnion = {
   location: 'South Lake Union',
   minCust: 5,
@@ -401,6 +428,16 @@ southLakeUnion.getTotalCust();
 southLakeUnion.getTotalCups();
 southLakeUnion.getTotalToGoPounds();
 southLakeUnion.getTotalPoundsNeeded();
+
+var southLakeUnionUl = document.getElementById('southLakeUnionList');
+var ulEl = document.createElement('ul');
+
+for (var i = 0; i < southLakeUnion.strings.length; i++) {
+  var liEl = document.createElement('li');
+  liEl.textContent = southLakeUnion.strings[i];
+  ulEl.appendChild(liEl);
+}
+southLakeUnionUl.appendChild(ulEl);
 
 var seaTac = {
   location: 'Sea-Tac Airport',
@@ -502,3 +539,13 @@ seaTac.getTotalCust();
 seaTac.getTotalCups();
 seaTac.getTotalToGoPounds();
 seaTac.getTotalPoundsNeeded();
+
+var seaTacUl = document.getElementById('seaTacList');
+var ulEl = document.createElement('ul');
+
+for (var i = 0; i < seaTac.strings.length; i++) {
+  var liEl = document.createElement('li');
+  liEl.textContent = seaTac.strings[i];
+  ulEl.appendChild(liEl);
+}
+seaTacUl.appendChild(ulEl);
