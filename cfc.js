@@ -2,93 +2,102 @@
 
 var hrs = ['6:00AM','7:00AM','8:00AM','9:00AM','10:00AM','11:00AM','12:00PM','1:00PM','2:00PM','3:00PM','4:00PM','5:00PM','6:00PM','7:00PM','8:00PM']
 
-var pike = {
-  location: 'Pike Place Market',
-  minCust: 14,
-  maxCust: 35,
-  avgCup: 1.2,
-  avgPounds: 0.34,
-  custPerHour: [],
-  custPerDay: 0,
-  cupsPerHour: [],
-  cupsPerDay:0,
-  toGoPoundsPerHour:[],
-  toGoPoundsPerDay:0,
-  poundCupHrly:[],
-  poundCupDaily:0,
-  dailyBeanPound:0,
-  hrlyBeanPound: [],
-  empPerHr: [],
-  empPerDay:0,
-  strings:[],
-  totalCustomers:[],
-  totalCups:[],
-  totalToGoPounds:[],
-  totalPoundsNeeded: [],
+var allStores = [];
 
+function Stores(location, minCust , maxCust, avgCup, avgPounds) {
+  this.custPerHour: [],
+  this.custPerDay: 0,
+  this.cupsPerHour: [],
+  this.cupsPerDay:0,
+  this.toGoPoundsPerHour:[],
+  this.toGoPoundsPerDay:0,
+  this.poundCupHrly:[],
+  this.poundCupDaily:0,
+  this.dailyBeanPound:0,
+  this.hrlyBeanPound: [],
+  this.empPerHr: [],
+  this.empPerDay:0,
+  this.strings:[],
+  this.totalCustomers:[],
+  this.totalCups:[],
+  this.totalToGoPounds:[],
+  this.totalPoundsNeeded: [],
+  allStores.push(this);
+}
 
-getRando: function(min,max) {
+Stores.prototype.getRando = function(min,max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
-},
-calcCustPerHour: function() {
+};
+Stores.prototype.calcCustPerHour = function() {
   for (var i = 0; i < hrs.length; i++) {
     this.custPerHour.push(this.getRando(this.minCust, this.maxCust));
     this.custPerDay += this.custPerHour[i];
   }
-},
-calcCupsPerHour: function() {
+};
+Stores.prototype.calcCupsPerHour = function() {
   for (var i = 0; i < hrs.length; i++) {
     this.cupsPerHour.push(this.custPerHour[i] * this.avgCup);
     this.cupsPerDay += this.cupsPerHour[i];
   }
-},
-getPounds: function() {
+};
+Stores.prototype.getPounds = function() {
   for (var i =0;i < hrs.length; i++) {
     this.toGoPoundsPerHour.push(this.custPerHour[i] * this.avgPounds);
     this.toGoPoundsPerDay += this.toGoPoundsPerHour[i];
   }
-},
-getEmp: function() {
+};
+Stores.prototype.getEmp = function() {
   for (var i = 0; i < hrs.length; i++) {
     this.empPerHr.push(Math.ceil(this.custPerHour[i] / 30));
     this.empPerDay += this.empPerHr[i];
      }
-   },
-calcPoundsCupHourly: function() {
+};
+Stores.prototype.calcPoundsCupHourly = function() {
   for (var i = 0; i < hrs.length; i++) {
     this.poundCupHrly.push(Math.ceil(this.cupsPerHour[i] / 16));
   }
-},
-calcPoundCupDaily: function() {
+};
+Stores.prototype.calcPoundCupDaily = function() {
   for (var i = 0; i < hrs.length; i++) {
     this.poundCupDaily += this.poundCupHrly[i];
   }
-},
-calcDailyBeanPound: function() {
+};
+Stores.prototype.calcDailyBeanPound = function() {
   this.dailyBeanPound = (this.poundCupDaily + this.toGoPoundsPerDay);
-},
+};
 
-getStrings: function() {
+Stores.prototype.getStrings = function() {
    for (var i = 0; i < hrs.length; i++) {
      this.strings.push(hrs[i] + ' ' + parseFloat((this.poundCupHrly[i] + this.toGoPoundsPerHour[i]).toFixed(2)) +
      'lbs [' + this.custPerHour[i].toFixed(2) + ' customers, ' + this.cupsPerHour[i].toFixed(2) + ' cups (' + this.poundCupHrly[i].toFixed(2) + ' lbs), ' + this.toGoPoundsPerHour[i].toFixed(2) + ' lbs to-go]');
    }
- },
+ };
 
-getTotalCust: function() {
+Stores.prototype.getTotalCust = function() {
   this.totalCustomers.push('Total customers at ' + this.location + ': ' + this.custPerDay.toFixed(2));
-},
-getTotalCups: function() {
+};
+Stores.prototype.getTotalCups = function() {
   this.totalCups.push('Total cups sold at ' + this.location + ': ' + this.cupsPerDay.toFixed(2));
-},
-getTotalToGoPounds: function() {
+};
+Stores.prototype.getTotalToGoPounds = function() {
   this.totalToGoPounds.push('Total to-go pounds sold at ' + this.location + ': ' + this.toGoPoundsPerDay.toFixed(2));
-},
-getTotalPoundsNeeded: function() {
+};
+Stores.prototype.getTotalPoundsNeeded = function() {
   this.totalPoundsNeeded.push('Total pounds of beans needed at ' + this.location + ': ' + this.dailyBeanPound.toFixed(2));
-},
 };
 
+new Stores('Pike Place Market', 14, 35, 1.2, 0.34);
+new Stores('Capitol Hill', 12, 28, 3.2, 0.03);
+new Stores('Seattle Public Library', 9, 45, 2.6, 0.02);
+new Stores('South Lake Union', 5, 18, 1.3, 0.04);
+new Stores('Sea-Tac Airport', 28, 44, 1.1, 0.41);
+
+
+function makeAllTheThings() {
+  for (var i = 0; i < allStores.length; i++) {
+    allStores[i].doAllTheMethods();
+  }
+}
 pike.calcCustPerHour();
 pike.calcCupsPerHour();
 pike.getPounds();
