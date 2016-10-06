@@ -150,15 +150,19 @@ for (var i = 0; i < obj.hrlyBeanPound.length; i++) {
   hourlyCell.textContent = obj.hrlyBeanPound[i].toFixed(1);
   rowEl.appendChild(hourlyCell);
 }
-  // var taxEl = document.createElement('td');
-  // taxEl.textContent = obj.tax;
-  // rowEl.appendChild(taxEl);
-  //
-  // var totalEl = document.createElement('td');
-  // totalEl.textContent = obj.total;
-  // rowEl.appendChild(totalEl);
 
-  //append row to the table
+
   tableEl.appendChild(rowEl);
 }
-makeRow(allStores[0]);
+
+
+
+var callRows = function () {
+  for (var i = 0; i < allStores.length; i++) {
+    makeRow(allStores[i]);
+  }
+};
+callRows();
+//everything looks right to me except for the code block in the for loop
+//when you set up the function you gave it a parameter (obj)
+//i think that code block in the loop should be
