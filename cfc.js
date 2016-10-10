@@ -124,13 +124,9 @@ function makeAllStores() {
 makeAllStores();
 
 var tableEl = document.getElementById('tableSauce');
-
 function makeRow(obj) {
-
   var rowEl = document.createElement('tr');
-
   var nameCell = document.createElement('td');
-
   nameCell.textContent = obj.location;
   rowEl.appendChild(nameCell);
 
@@ -145,7 +141,6 @@ for (var i = 0; i < obj.hrlyBeanPound.length; i++) {
 }
   tableEl.appendChild(rowEl);
 }
-
 var callRows = function () {
   for (var i = 0; i < allStores.length; i++) {
     makeRow(allStores[i]);
@@ -154,12 +149,16 @@ var callRows = function () {
 callRows();
 
 var tableEl = document.getElementById('tableEmp');
-
 function totalsRow(obj) {
   var rowEl = document.createElement('tr');
   var totalCell = document.createElement('td');
   totalCell.textContent = obj.location;
   rowEl.appendChild(totalCell);
+
+  // for (var i = 0; i < obj.empPerHr.length; i++) {
+  //   var hourlyCell = document.createElement('td');
+  //   hourlyCell.textContent = obj.empPerHr[i].toFixed(1);
+  //   rowEl.appendChild(hourlyCell);
 
 for (var i = 0; i < obj.empPerHr.length; i++) {
   var hourlyEmpCell = document.createElement('td');
@@ -171,7 +170,7 @@ for (var i = 0; i < obj.empPerHr.length; i++) {
 var callRows = function () {
   for (var i = 0; i < allStores.length; i++) {
     totalsRow(allStores[i]);
-  }
+    }
 };
 callRows();
 
@@ -182,13 +181,21 @@ function headerRow(obj) {
   var emptyCell = document.createElement('td');
   emptyCell.textContent = ' ';
   rowEl.appendChild(emptyCell);
+  headerEl.appendChild(rowEl);
+
+  var hourlyCell = document.createElement('td');
+  hourlyCell.textContent = 'Daily Location Total';
+  rowEl.appendChild(hourlyCell);
+  headerEl.appendChild(rowEl);
+
+
 
 for (var i = 0; i < hrs.length; i++) {
   var storeHoursCell = document.createElement('td');
   storeHoursCell.textContent = hrs[i];
   rowEl.appendChild(storeHoursCell);
-}
   headerEl.appendChild(rowEl);
+  }
 }
 
 var callRows = function () {
@@ -203,6 +210,11 @@ function headerEmpRow(obj) {
   var emptyCell = document.createElement('td');
   emptyCell.textContent = ' ';
   rowEl.appendChild(emptyCell);
+
+  var hourlyCell = document.createElement('td');
+  hourlyCell.textContent = 'Total';
+  rowEl.appendChild(hourlyCell);
+  headerEl.appendChild(rowEl);
 
 for (var i = 0; i < hrs.length; i++) {
   var storeHoursCell = document.createElement('td');
@@ -251,7 +263,7 @@ var cfcWide = {
       }
       this.employeePerHr.push(counter.toFixed(2));
     }
-  }
+  },
 };
 
 
@@ -284,6 +296,15 @@ function poundTotalsRow() {
   var totalBeanCell = document.createElement('td');
   totalBeanCell.textContent = 'totals';
   rowEl.appendChild(totalBeanCell);
+  tableBottomEl.appendChild(totalBeanCell);
+
+
+
+  var rowEl = document.createElement('tr');
+  var totalHourCell = document.createElement('td');
+  totalHourCell.textContent = cfcWide.dailyBeanPound;
+  rowEl.appendChild(totalHourCell);
+
 
   var totalBeanPoundCell = document.createElement('td');
     totalBeanPoundCell.textContent = cfcWide.totalPoundsNeeded;
@@ -302,60 +323,33 @@ var callRow = function () {
   poundTotalsRow(allStores[i].hourlyBeanPound);
   }
 }
-  poundTotalsRow();
-  callRow();
+poundTotalsRow();
+callRow();
 
 var bottomEmpEl = document.getElementById('empFoot');
-  function empTotalsRow() {
+function empTotalsRow() {
   var rowEl = document.createElement('tr');
   var totalEmpCell = document.createElement('td');
   totalEmpCell.textContent = 'totals';
   rowEl.appendChild(totalEmpCell);
-  bottomEmpEl.appendChild(rowEl)
+  bottomEmpEl.appendChild(rowEl);
 
 var totalEmpNeedCell = document.createElement('td');
-    totalEmpNeedCell.textContent = cfcWide.employeePerDay;
+    totalEmpNeedCell.textContent = cfcWide.employeePerHr[i];
     rowEl.appendChild(totalEmpNeedCell);
     bottomEmpEl.appendChild(rowEl);
 
-for (var i = 0; i < cfcWide.employeePerHr.length;) {
-    var empPerHrCell = document.createElement('td');
-    empPerHrCell.textContent = cfcWide.employeePerHr[i];
-    rowEl.appendChild(empPerHrCell);
-    bottomEmpEl.appendChild(rowEl);
+for (var i = 0; i < cfcWide.employeePerHr.length;i++) {
+  var empPerHrCell = document.createElement('td');
+  empPerHrCell.textContent = cfcWide.employeePerHr[i];
+  rowEl.appendChild(empPerHrCell);
+  bottomEmpEl.appendChild(rowEl);
   }
 }
-// var allRow = function () {
-//   for (var i = 0; i < allStores[i].length; i++) {
-//   empTotalsRow(allStores[i].employeePerHr);
-//   }
-// }
-// empTotalsRow();
-// allRow();
-///also wondering why above function kills everything and doesn't allow screen to load
-
-// var callRows = function () {
-//   for (var i = 0; i < allStores.length; i++) {
-//     poundTotalsRow(allStores);
-//   }
-// }
-// callRows();
-// var tableBottomEl = document.getElementById('bottomHead');
-//
-// function poundTotalsRow(obj) {
-//   var rowEl = document.createElement('tr');
-//   var emptoCell = document.createElement('td');
-//   emptoCell.textContent = ' ';
-//   rowEl.appendChild(emptoCell);x
-//
-//   var totalBeanCell = document.createElement('td');
-//   totalBeanCell.textContent = obj.hrlyBeanPound;
-//   rowEl.appendChild(totalBeanCell);
-//   tableBottomEl.appendChild(rowEl);
-// }
-// var callRows = function () {
-//   for (var i = 0; i < allStores.length; i++) {
-//     poundTotalsRow(allStores[i]);
-//   }
-// };
-// callRows();
+var allRow = function () {
+  for (var i = 0; i < allStores[i].length; i++) {
+    empTotalsRow(allStores[i].employeePerHr[i]);
+  }
+}
+empTotalsRow();
+allRow();
