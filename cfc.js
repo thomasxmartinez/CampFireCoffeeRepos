@@ -10,6 +10,8 @@ var bodyEmpEl = document.getElementById('bodEmp');
 var tableBottomEl = document.getElementById('bottomHead');
 var bottomEmpEl = document.getElementById('empFoot');
 
+var form = document.getElementById('form');
+
 // NOTE: Constructor for building store objects, and prototype methods
 function Stores(location, minCust , maxCust, avgCup, avgPounds) {
   this.location = location;
@@ -142,11 +144,20 @@ var cfcWide = {
   }
 };
 
-cfcWide.calcDailyTotalBeanPound();
-cfcWide.calcHourlyTotalBeanPound();
-cfcWide.calcDailyStaffTotal();
-cfcWide.calcHrlyStaffTotal();
+function cfcWideCallAll() {
+  cfcWide.calcDailyTotalBeanPound();
+  cfcWide.calcHourlyTotalBeanPound();
+  cfcWide.calcDailyStaffTotal();
+  cfcWide.calcHrlyStaffTotal();
+}
+cfcWideCallAll();
 
+function clearCfcWide() {
+  cfcWide.totalPoundsNeeded = 0;
+  cfcWide.hourlyBeanPound = [];
+  cfcWide.employeePerDay = 0;
+  cfcWide.employeePerHr = [];
+}
 // NOTE: RENDERING LBS TABLE
 
 function lbsHeaderRow() {
@@ -211,7 +222,7 @@ function totalsRow() {
   }
   tableBottomEl.appendChild(rowEl);
 }
-
+totalsRow();
 // NOTE: RENDERING EMPLOYEE TABLE
 
 function headerEmpRow() {
@@ -279,6 +290,30 @@ function empTotalsRow() {
     bottomEmpEl.appendChild(rowEl);
   }
 }
-
 empTotalsRow();
-totalsRow();
+
+function formSubmit(event) {
+  event.preventDefault();
+
+  var location = event.target.location.value;
+  var minCust = event.target.minCust.value;
+  var maxCust = event.target.maxCust.value;
+  var avgCup = event.target.avgCup.value;
+  var avgPounds = event.target.avgPounds.value;
+  var newStores = new Stores(location, minCust, maxCust, avgCup, avgPounds);
+
+  newStores.callMethods();
+  document.getElementById('bottomHead').innerHTML = '';
+  document.getElementById('empFoot').innerHTML = '';
+  document.getElementById('tableBod').innerHTML = '';
+  document.getElementById('bodEmp').innerHTML = '';
+
+  clearCfcWide();
+  cfcWideCallAll();
+  lbsBeanRows(newStores);
+  totalsRow();
+  empTotalsRow();
+  makeEmpRows(newStores);
+}
+
+form.addEventListener('submit', formSubmit);
